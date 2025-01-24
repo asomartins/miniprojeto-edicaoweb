@@ -36,7 +36,7 @@ h1,
 .conteudo {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .tituloProjeto {
@@ -70,8 +70,8 @@ h1,
 
 /* elipse bg amarelo avatar */
 .avatar {
-  width: 116px;
-  height: 116px;
+  width: 147px;
+  height: 142px;
   background: linear-gradient(
     180deg,
     #f19912 0.02%,
@@ -84,9 +84,9 @@ h1,
 }
 
 .avatar img {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   position: absolute;
-  top: 6%;
-  left: 9%;
+  bottom: -1%;
+  left: 5%;
 }
