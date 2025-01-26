@@ -14,29 +14,30 @@ p {
   margin: 0;
 }
 
-h1,
-.textoSaudacao {
-  font-family: 'Urbanist', serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-
 .container {
   width: 90%;
   max-width: 600px;
   height: 400px;
-  padding: 20px;
-  background-color: rgba(102, 0, 102, 0.12);
+  padding: 30px;
+  background-color: #ece0ec;
   position: relative;
   border-radius: 40px;
   text-align: center;
+  color: #660066;
+  font-family: 'Urbanist', serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .conteudo {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  margin: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px;
 }
 
 .tituloProjeto {
@@ -48,49 +49,131 @@ h1,
   padding: 10px 20px;
 }
 
-.texto {
-  margin: 15px;
-}
-
 .textoSaudacao {
   font-size: 1.3em;
 }
 
-.corTexto {
-  color: #660066;
-}
-
-.corTitulo {
-  color: #490849;
-}
-
 .textoSaudacao {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-/* elipse bg roxo avatar */
 #avatar {
-  width: 147px;
-  height: 142px;
-  background: linear-gradient(180deg, #b89bb8 0%, #8a2be2 50%, #551a8b 100%);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 150px;
+  height: 150px;
+  margin-right: 15px;
+  background: linear-gradient(270deg, #b89bb8, #8a2be2, #551a8b);
+  background-size: 300% 300%;
+  animation: gradientMovePurple 4s ease infinite;
   border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: relative;
 }
 
+@keyframes gradientMovePurple {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#avatar.avatar-estilizado {
+  background: linear-gradient(270deg, #ffd700, #ffa500, #ffff00);
+  background-size: 300% 300%;
+  animation: gradientMoveYellow 4s ease infinite;
+}
+
+@keyframes gradientMoveYellow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 #avatar img {
-  width: 90%;
-  height: 90%;
+  width: 85%;
+  height: 85%;
   position: absolute;
-  bottom: -1%;
-  left: 5%;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#avatar .cronometro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 35px;
+}
+
+.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btnAlterarEstilo {
+  display: none;
+  white-space: nowrap;
+  padding: 10px 20px;
+  max-width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.novo-estilo {
+  background: linear-gradient(270deg, #660066 0.01%, #993399 100%);
+  color: #fff;
+}
+
+.titulo-estilizado {
+  color: #fff;
+  border-top: 2px dashed;
+  border-bottom: 2px dashed;
+  transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+.hidden {
   display: none;
 }
 
-#avatar span {
-  position: absolute;
-  top: 40%;
-  left: 47%;
-  color: #fff;
-  font-size: 24px;
+.displayed {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .container {
+    height: auto; /* Permite altura flexível */
+    padding: 15px; /* Reduz o espaçamento interno */
+  }
+
+  .conteudo {
+    flex-direction: column; /* Coloca avatar e texto em coluna */
+    gap: 20px; /* Ajusta o espaçamento */
+  }
+
+  #avatar {
+    margin-right: 0; /* Remove margem lateral */
+  }
+
+  .textoSaudacao {
+    font-size: 1.1em; /* Ajusta o tamanho do texto para telas pequenas */
+  }
+
+  #btnAlterarEstilo {
+    width: 80%; /* Faz o botão ocupar mais espaço em telas menores */
+    margin: 0 auto; /* Centraliza o botão */
+  }
 }

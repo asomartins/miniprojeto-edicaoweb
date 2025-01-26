@@ -5,41 +5,46 @@ const tituloProjeto = document.querySelector('.tituloProjeto');
 const textoSaudacao = document.querySelector('.textoSaudacao');
 const avatar = document.getElementById('avatar');
 const avatarImg = document.querySelector('#avatar img');
-const cronometro = document.querySelector('span');
+const cronometro = document.querySelector('.cronometro');
 
 function iniciarCronometro() {
-  for (let i = 5; i > 0; i--) {
-    setTimeout(() => {
-      cronometro.textContent = i;
-    }, (5 - i) * 1000);
-  }
+  let contador = 5;
+  const interval = setInterval(() => {
+    cronometro.textContent = contador;
+    contador--;
 
-  setTimeout(() => {
-    cronometro.style.display = 'none';
-    avatarImg.style.display = 'block';
-  }, 5 * 1000);
+    if (contador < 0) {
+      clearInterval(interval);
+      cronometro.classList.add('hidden');
+      avatarImg.classList.remove('hidden');
+      avatarImg.classList.add('displayed');
+      textoSaudacao.textContent = 'Olá! Clique na ação desejada:';
+      btnAlterarEstilo.style.display = 'block';
+    }
+  }, 1000);
 }
 
 iniciarCronometro();
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (btnAlterarEstilo.textContent === 'Voltar para estilo inicial') {
-    container.removeAttribute('style');
-    tituloProjeto.removeAttribute('style');
-    textoSaudacao.removeAttribute('style');
-    avatar.removeAttribute('style');
-    avatarImg.removeAttribute('style');
+
+  const novoEstiloAplicado =
+    btnAlterarEstilo.textContent === 'Voltar para estilo inicial';
+
+  if (novoEstiloAplicado) {
+    container.classList.remove('novo-estilo');
+    tituloProjeto.classList.remove('titulo-estilizado');
+    avatar.classList.remove('avatar-estilizado');
     btnAlterarEstilo.textContent = 'Alterar estilo';
+    btnAlterarEstilo.classList.remove('btn-warning');
+    btnAlterarEstilo.classList.add('btn-light');
   } else {
-    container.style.background =
-      'linear-gradient(270deg, #660066 0.01%, #993399 100%)';
-    tituloProjeto.style.color = '#FFFFFF';
-    tituloProjeto.style.borderTop = '2px dashed';
-    tituloProjeto.style.borderBottom = '2px dashed';
-    textoSaudacao.style.color = '#FFFFFF';
-    avatar.style.background =
-      'linear-gradient(180deg, #f1a112 0%, #f3b834 50%, #f3a937 100%)';
-    avatarImg.style.display = 'block';
+    container.classList.add('novo-estilo');
+    tituloProjeto.classList.add('titulo-estilizado');
+    avatar.classList.add('avatar-estilizado');
     btnAlterarEstilo.textContent = 'Voltar para estilo inicial';
+    btnAlterarEstilo.classList.remove('btn-light');
+    btnAlterarEstilo.classList.add('btn-warning');
   }
 });
