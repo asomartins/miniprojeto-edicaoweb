@@ -17,6 +17,7 @@
 </head>
 
 <body>
+  <!-- Container principal de conteúdo-->
   <div class="container">
     <h1 class="tituloProjeto">Projeto - Componente Javascript</h1>
     <div class="conteudo">
@@ -25,17 +26,31 @@
         <span class="cronometro"></span>
       </div>
       <div class="texto">
-        <p class="textoSaudacao"></p>
-        <form id="changestyle-form">
+        <p class="textoSaudacao hidden">Olá! Clique na ação desejada:</p>
+        <form id="formMudarEstilo">
           <div class="form-group text-center">
-            <button type="submit" id="btnAlterarEstilo" class="btn btn-light w-100">Alterar estilo</button>
+            <button type="submit" id="btnAlterarEstilo" class="btn btn-light w-100 hidden">Alterar estilo</button>
+            <button type="submit" id="btnChuvaTetris" class="btn btn-light w-100 hidden">Chuva de tetris</button>
           </div>
         </form>
       </div>
     </div>
+    <!-- Container que agrupa os blocos de tetris -->
+    <div id="tetrisL" class="hidden">
+      <div class="bloco"></div>
+      <div class="bloco"></div>
+      <div class="bloco"></div>
+      <div class="bloco"></div>
+    </div>
+    <div id="tetrisZ" class="hidden">
+      <div class="bloco"></div>
+      <div class="bloco"></div>
+      <div class="bloco"></div>
+      <div class="bloco"></div>
+    </div>
+    <!-- Fim - Container que agrupa os blocos de tetris -->
   </div>
-  </div>
-
+  <!-- Fim - Container principal de conteúdo -->
   <script src="script.js"></script>
 </body>
 

@@ -5,7 +5,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100%;
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -14,10 +14,11 @@ p {
   margin: 0;
 }
 
+/* Container principal */
 .container {
   width: 90%;
   max-width: 600px;
-  height: 400px;
+  min-height: 400px;
   padding: 30px;
   background-color: #ece0ec;
   position: relative;
@@ -28,7 +29,9 @@ p {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  /* Permite transições suaves ao alterar o fundo ou cor do texto */
   transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 .conteudo {
@@ -38,6 +41,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   margin: 30px;
+  min-height: 150px;
 }
 
 .tituloProjeto {
@@ -53,6 +57,10 @@ p {
   font-size: 1.3em;
 }
 
+.texto {
+  width: 280px;
+}
+
 .textoSaudacao {
   margin-bottom: 10px;
 }
@@ -61,6 +69,7 @@ p {
   width: 150px;
   height: 150px;
   margin-right: 15px;
+  /* Gradiente em tons de roxo, movendo-se da direita para a esquerda */
   background: linear-gradient(270deg, #b89bb8, #8a2be2, #551a8b);
   background-size: 300% 300%;
   animation: gradientMovePurple 4s ease infinite;
@@ -69,6 +78,8 @@ p {
   position: relative;
 }
 
+/* Animação p/ criar movimento no gradiente
+Move o gradiente horizontalmente (0, 50%, 100%) no elemento.*/
 @keyframes gradientMovePurple {
   0% {
     background-position: 0% 50%;
@@ -82,18 +93,25 @@ p {
 }
 
 #avatar.avatar-estilizado {
+  /* gradiente amarelo horizontal da direita p/ esq */
   background: linear-gradient(270deg, #ffd700, #ffa500, #ffff00);
+  /* faz o gradiante ser 3x maior que o tamanho original do elemento (larg e alt), p/ criar o efeito de movimento */
   background-size: 300% 300%;
+  /* ease: começo e fim suaves 
+  infinite: vai ser repetida continuamente */
   animation: gradientMoveYellow 4s ease infinite;
 }
 
 @keyframes gradientMoveYellow {
+  /* Posição inicial do gradiente, alinhada à esquerda do elemento (0%) e centrada verticalmente (50%) */
   0% {
     background-position: 0% 50%;
   }
+  /* Move o gradiente para a direita do elemento (100%), enquanto mantém a posição vertical centralizada */
   50% {
     background-position: 100% 50%;
   }
+  /* Volta o gradiente à posição inicial, completando o ciclo */
   100% {
     background-position: 0% 50%;
   }
@@ -123,17 +141,25 @@ p {
   align-items: center;
 }
 
-#btnAlterarEstilo {
-  display: none;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+#btnAlterarEstilo,
+#btnChuvaTetris {
   white-space: nowrap;
   padding: 10px 20px;
-  max-width: 100%;
   text-align: center;
   font-size: 1rem;
   border-radius: 10px;
 }
 
+/* Background estilizado do container principal  */
 .novo-estilo {
+  /* gradiente roxo horizontal da direita p/ esq */
   background: linear-gradient(270deg, #660066 0.01%, #993399 100%);
   color: #fff;
 }
@@ -145,35 +171,176 @@ p {
   transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 
+.bloco-estilizado {
+  background-color: #ffa500;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .displayed {
   display: block;
 }
 
+/* Blocos de tetris c/ position absolute p/ serem iniciarem no topo do container (que está como position relative)*/
+#tetrisL {
+  position: absolute;
+  width: 44px;
+  height: 64px;
+  top: 0;
+  right: 3%;
+  z-index: 10;
+}
+
+#tetrisZ {
+  position: absolute;
+  width: 44px;
+  height: 64px;
+  top: 0;
+  left: 3%;
+  z-index: 10;
+}
+
+/* Estilo de cada bloco do tetris */
+.bloco {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #660066;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do bloco no modo estilizado */
+.bloco-estilizado {
+  background-color: #ffa500;
+}
+
+/* Cada bloco do tetris é um filho da div principal e tem sua posição definida */
+
+#tetrisL .bloco:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+#tetrisL .bloco:nth-child(2) {
+  top: 22px;
+  left: 0;
+}
+
+#tetrisL .bloco:nth-child(3) {
+  top: 44px;
+  left: 0;
+}
+
+#tetrisL .bloco:nth-child(4) {
+  top: 44px;
+  left: 22px;
+}
+
+#tetrisZ .bloco:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+#tetrisZ .bloco:nth-child(2) {
+  top: 0;
+  left: 22px;
+}
+
+#tetrisZ .bloco:nth-child(3) {
+  top: 22px;
+  left: 22px;
+}
+
+#tetrisZ .bloco:nth-child(4) {
+  top: 22px;
+  left: 44px;
+}
+
 @media (max-width: 600px) {
   .container {
-    height: auto; /* Permite altura flexível */
-    padding: 15px; /* Reduz o espaçamento interno */
+    height: auto;
+    padding: 15px;
   }
 
   .conteudo {
-    flex-direction: column; /* Coloca avatar e texto em coluna */
-    gap: 20px; /* Ajusta o espaçamento */
+    flex-direction: column;
+    gap: 20px;
   }
 
   #avatar {
-    margin-right: 0; /* Remove margem lateral */
+    margin-right: 0;
   }
 
   .textoSaudacao {
-    font-size: 1.1em; /* Ajusta o tamanho do texto para telas pequenas */
+    font-size: 1.1em;
   }
 
   #btnAlterarEstilo {
-    width: 80%; /* Faz o botão ocupar mais espaço em telas menores */
-    margin: 0 auto; /* Centraliza o botão */
+    width: 80%;
+    margin: 0 auto;
   }
+}
+
+/* Animação para o movimento do tetris em Z */
+@keyframes tetrisZMove {
+  /* Início */
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Primeira descida */
+  25% {
+    transform: translateY(100px) rotate(0deg);
+  }
+  /* Giro */
+  50% {
+    transform: translateY(100px) rotate(90deg);
+  }
+  /* Move para a direita após o giro */
+  60% {
+    transform: translate(150px, 100px) rotate(90deg);
+  }
+  /* Continua descendo após o deslocamento */
+  75% {
+    transform: translate(150px, 300px) rotate(90deg);
+  }
+  /* Finaliza no fundo */
+  100% {
+    transform: translate(150px, 400px) rotate(90deg);
+  }
+}
+
+/* Animação para o movimento do tetris em L */
+@keyframes tetrisLMove {
+  /* Início */
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Primeira descida */
+  25% {
+    transform: translateY(100px) rotate(0deg);
+  }
+  /* Giro */
+  50% {
+    transform: translateY(100px) rotate(90deg);
+  }
+  /* Continua descendo após o giro */
+  75% {
+    transform: translateY(300px) rotate(90deg);
+  }
+  /* Finaliza no fundo */
+  100% {
+    transform: translateY(400px) rotate(90deg);
+  }
+}
+
+/* Movimentos discretos com 4 etapas */
+#tetrisL.animate {
+  animation: tetrisLMove 4s steps(4) infinite;
+}
+
+#tetrisZ.animate {
+  animation: tetrisZMove 4s steps(4) infinite;
 }
